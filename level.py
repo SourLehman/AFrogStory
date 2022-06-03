@@ -8,6 +8,7 @@ from tile import Tile
 from player import Player
 from debug import debug
 import os
+from support import *
 
 
 class Level:
@@ -24,11 +25,16 @@ class Level:
 
     # assign position values to each space in the world map
     def create_map(self):
-        # layout = {'boundary': import_csv_layout('Levels/level_data/tree_layer_Tile_Layer_3.csv')}
-        # for row_index, row in enumerate(WORLD_MAP):
-        #     for col_index, col in enumerate(row):
-        #         x = col_index * TILESIZE
-        #         y = row_index * TILESIZE
+        layouts = {'boundary': import_csv_layout('Levels/level_data/layer_Barrier.csv')}
+
+        for style, layout in layouts.items():
+            for row_index, row in enumerate(layout):
+                for col_index, col in enumerate(row):
+                    if col != '-1':
+                        x = col_index * TILESIZE
+                        y = row_index * TILESIZE
+                        if style == 'boundary':
+                            Tile((x, y), [self.visible_sprites, self.obstacle_sprites], 'invisible')
         #         if col == 'x':
         #             Tile((x, y), [self.visible_sprites, self.obstacle_sprites])
         #         if col == 'p':

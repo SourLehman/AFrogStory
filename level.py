@@ -11,7 +11,7 @@ import os
 from support import *
 
 
-# this is a dummy comment
+
 class Level:
     def __init__(self):
 
